@@ -9,7 +9,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 
-class FunctionsContacto {
+class FunctionsAdmin2 {
 
     private val retrofit = ServiceBuilder.serviceBuilder
     private val arrayTutorialType = object : TypeToken<List<Parking>>() {}.type
@@ -79,7 +79,7 @@ class FunctionsContacto {
                     JSONObject(data.get("data").toString()).get("getAvailableParkings").toString(),
                     arrayTutorialType
                 )
-                Log.e("response", getAvailableParkings.toString())
+                Log.e("response", Availables.toString())
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }

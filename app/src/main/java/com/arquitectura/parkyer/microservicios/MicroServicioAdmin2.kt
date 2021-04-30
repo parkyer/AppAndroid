@@ -1,11 +1,11 @@
 package com.arquitectura.parkyer.microservicios
 
-import com.arquitectura.parkyer.models.Mensaje
-import com.arquitectura.parkyer.service.functions.FunctionsContacto
+import com.arquitectura.parkyer.models.Parking
+import com.arquitectura.parkyer.service.functions.FunctionsAdmin2
 
-class MicroServicioContacto {
+class MicroServicioAdmin2 {
 
-    private val functionsContacto = FunctionsContacto()
+    private val functionsadmin2 = FunctionsAdmin2()
     private var parking = Parking(
         1,
         1,
@@ -17,22 +17,22 @@ class MicroServicioContacto {
     )
 
     fun getParkings() {
-        functionsContacto.getParkings()
+        functionsadmin2.getParkings()
     }
 
     fun getParkingsUsedBy(id_client: String) {
-        functionsContacto.getParkingsUsedBy(id_client)
+        functionsadmin2.getParkingsUsedBy(id_client)
     }
 
     fun getAvailableParkings() {
-        functionsContacto.getAvailableParkings()
+        functionsadmin2.getAvailableParkings()
     }
 
     fun newSuscription(id: Int, id_client: String) {
-        functionsContacto.newSuscription(id, id_client)
+        functionsadmin2.newSuscription(id, id_client)
     }
 
     fun deleteSuscription(id: Int) {
-        functionsContacto.deleteSuscription(id)
+        functionsadmin2.deleteSuscription(id)
     }
 }
