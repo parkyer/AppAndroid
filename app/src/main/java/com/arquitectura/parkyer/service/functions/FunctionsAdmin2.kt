@@ -25,7 +25,7 @@ class FunctionsAdmin2 {
         val paramObject = JSONObject()
         paramObject.put(
             "query", 
-            "query {getParkings{i,id_owner,id_client,latitude,longitude,location,type}}")
+            "query {getParkings{id,id_owner,id_client,latitude,longitude,location,type}}")
 
         GlobalScope.launch {
             try {
@@ -42,12 +42,12 @@ class FunctionsAdmin2 {
         }
     }
 
-    fun getParkingsUsedBy(id_client: String) {
+    fun getParkingsUsedBy(id_client: Int) {
 
         val paramObject = JSONObject()
         paramObject.put(
             "query", 
-            "query {getParkingsUsedBy(id: \"${id_client}\"){i,id_owner,id_client,latitude,longitude,location,type}}")
+            "query {getParkingsUsedBy(id: ${id_client}){id,id_owner,id_client,latitude,longitude,location,type}}")
 
         GlobalScope.launch {
             try {

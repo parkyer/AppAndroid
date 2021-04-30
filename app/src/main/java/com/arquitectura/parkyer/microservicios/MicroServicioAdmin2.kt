@@ -16,11 +16,21 @@ class MicroServicioAdmin2 {
         "carro"
     )
 
+    fun modificarParking(id: Int, id_owner: Int, id_client: String, latitude: String, longitude: String, location: String, type: String) {
+        this.parking.id = id
+        this.parking.id_owner = id_owner
+        this.parking.id_client = id_client
+        this.parking.latitude = latitude
+        this.parking.longitude = longitude
+        this.parking.location = location
+        this.parking.type = type
+    }
+
     fun getParkings() {
         functionsadmin2.getParkings()
     }
 
-    fun getParkingsUsedBy(id_client: String) {
+    fun getParkingsUsedBy(id_client) {
         functionsadmin2.getParkingsUsedBy(id_client)
     }
 
