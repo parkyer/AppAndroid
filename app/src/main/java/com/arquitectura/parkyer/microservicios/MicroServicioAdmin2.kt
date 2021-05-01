@@ -30,7 +30,7 @@ class MicroServicioAdmin2 {
         functionsadmin2.getParkings()
     }
 
-    fun getParkingsUsedBy(id_client) {
+    fun getParkingsUsedBy(id_client: Int) {
         functionsadmin2.getParkingsUsedBy(id_client)
     }
 
