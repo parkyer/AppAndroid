@@ -61,4 +61,40 @@ class FunctionsPerfil {
             }
         }
     }
+
+    fun agregarMetodoDePago(user: User) {
+
+        val paramObject = JSONObject()
+        paramObject.put(
+            "query",
+            "mutation { addPaymentMethod(id: ${user.id}, payment: {payment_method: \"${user.paymentMethod}\"}){id,name,last_name,email,password,phone,payment_method,address}}"
+        )
+
+        GlobalScope.launch {
+            try {
+                val response = retrofit.sendRequest(paramObject.toString())
+                Log.e("response", response.body().toString())
+            } catch (e: java.lang.Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun borrarUsuario(user: User) {
+
+        val paramObject = JSONObject()
+        paramObject.put(
+            "query",
+            "mutation { deleteUser(id:${user.id}){id,name,last_name,email,password,phone,payment_method,address}}"
+        )
+
+        GlobalScope.launch {
+            try {
+                val response = retrofit.sendRequest(paramObject.toString())
+                Log.e("response", response.body().toString())
+            } catch (e: java.lang.Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
 }
