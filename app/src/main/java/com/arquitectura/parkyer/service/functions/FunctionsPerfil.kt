@@ -2,6 +2,7 @@ package com.arquitectura.parkyer.service.functions
 
 import android.util.Log
 import com.a.graphqlwithretrofit.ServiceBuilder
+import com.arquitectura.parkyer.models.User
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.json.JSONObject
@@ -18,7 +19,43 @@ class FunctionsPerfil {
         GlobalScope.launch {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
-                Log.e("response", response.body().toString() )
+                Log.e("response", response.body().toString())
+            } catch (e: java.lang.Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun editarUsuario(user: User) {
+
+        val paramObject = JSONObject()
+        paramObject.put(
+            "query",
+            "mutation { updateUser(id: ${user.id}, user: {name: \"${user.name}\", last_name: \"${user.lastName}\", email: \"${user.email}\", phone: ${user.phone}, address: \"${user.address}\"}) {id,name,last_name,email,password,phone,payment_method,address}}"
+        )
+
+        GlobalScope.launch {
+            try {
+                val response = retrofit.sendRequest(paramObject.toString())
+                Log.e("response", response.body().toString())
+            } catch (e: java.lang.Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun cambiarContrasenia(user: User) {
+
+        val paramObject = JSONObject()
+        paramObject.put(
+            "query",
+            "mutation { changePassword(id: ${user.id}, password: {password: \"${user.password}\"}){id,name,last_name,email,password,phone,payment_method,address}}"
+        )
+
+        GlobalScope.launch {
+            try {
+                val response = retrofit.sendRequest(paramObject.toString())
+                Log.e("response", response.body().toString())
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
