@@ -5,7 +5,7 @@ import com.arquitectura.parkyer.service.functions.FunctionsAdmin2
 
 class MicroServicioAdmin2 {
 
-    private val functionsadmin2 = FunctionsAdmin2()
+    private val functions_admin2 = FunctionsAdmin2()
     private var parking = Parking(
         1,
         1,
@@ -27,22 +27,22 @@ class MicroServicioAdmin2 {
     }
 
     fun getParkings() {
-        functionsadmin2.getParkings()
+        functions_admin2.getParkings()
     }
 
-    fun getParkingsUsedBy(id_client) {
-        functionsadmin2.getParkingsUsedBy(id_client)
+    fun getParkingsUsedBy(id_client: Int) {
+        functions_admin2.getParkingsUsedBy(id_client)
     }
 
     fun getAvailableParkings() {
-        functionsadmin2.getAvailableParkings()
+        functions_admin2.getAvailableParkings()
     }
 
     fun newSuscription(id: Int, id_client: String) {
-        functionsadmin2.newSuscription(id, id_client)
+        functions_admin2.newSuscription(id, id_client)
     }
 
     fun deleteSuscription(id: Int) {
-        functionsadmin2.deleteSuscription(id)
+        functions_admin2.deleteSuscription(id)
     }
 }

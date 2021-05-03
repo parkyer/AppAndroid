@@ -91,7 +91,7 @@ class FunctionsAdmin2 {
         val paramObject = JSONObject()
         paramObject.put(
             "query",
-            "mutation {newSuscription(id: ${id}, client:{id_client: \"${id_client}\"}){id,id_owner,id_client,latitude,longitude,location,type}}"
+            "mutation {newSuscription(id:${id},client:{id_client:\"${id_client}\"}){id,id_owner,id_client,latitude,longitude,location,type}}"
         )
 
         GlobalScope.launch {
@@ -117,7 +117,7 @@ class FunctionsAdmin2 {
         val paramObject = JSONObject()
         paramObject.put(
             "query",
-            "mutation {deleteSuscription(id: ${id}) {id,id_owner,id_client,latitude,longitude,location,type}}"
+            "mutation {deleteSuscription(id:${id}){id,id_owner,id_client,latitude,longitude,location,type}}"
         )
 
         GlobalScope.launch {
