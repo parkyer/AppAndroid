@@ -5,7 +5,208 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary_blue"
+    android:foregroundTint="#F1EAEA"
     tools:context=".views.Perfil">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/bg_rectangle_white"
+        app:layout_constraintBottom_toTopOf="@id/barra_lateral"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imagen"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_bxs_user_circle" />
+
+        <TextView
+            android:id="@+id/nombre_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:text="Nombre:"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imagen" />
+
+        <TextView
+            android:id="@+id/nombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Ingrese Nombre"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/nombre_label"
+            app:layout_constraintTop_toBottomOf="@id/imagen" />
+
+        <TextView
+            android:id="@+id/apellido_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:text="Apellido:"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nombre_label" />
+
+        <TextView
+            android:id="@+id/apellido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:text="Ingrese Apellido"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/nombre_label"
+            app:layout_constraintTop_toBottomOf="@id/nombre_label" />
+
+        <TextView
+            android:id="@+id/correo_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:text="Correo:"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/apellido_label" />
+
+        <TextView
+            android:id="@+id/correo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:text="Ingrese Correo"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/nombre_label"
+            app:layout_constraintTop_toBottomOf="@id/apellido_label" />
+
+        <TextView
+            android:id="@+id/telefono_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:text="Telefono:"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/correo_label" />
+
+        <TextView
+            android:id="@+id/telefono"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:text="Ingrese Telefono"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/nombre_label"
+            app:layout_constraintTop_toBottomOf="@id/correo_label" />
+
+        <TextView
+            android:id="@+id/direccion_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:text="Dirección:"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/telefono_label" />
+
+        <TextView
+            android:id="@+id/direccion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:text="Ingrese Dirección"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/nombre_label"
+            app:layout_constraintTop_toBottomOf="@id/telefono_label" />
+
+        <Button
+            android:id="@+id/editar"
+            android:layout_width="200dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/bg_rectangle_green"
+            android:text="Editar Información"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/direccion_label" />
+
+        <Button
+            android:id="@+id/cambiar_contrasenia"
+            android:layout_width="200dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/bg_rectangle_blue"
+            android:text="Cambiar Contraseña"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editar" />
+
+        <Button
+            android:id="@+id/cambiar_metodo"
+            android:layout_width="200dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/bg_rectangle_blue"
+            android:text="Cambiar Método de Pago"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cambiar_contrasenia" />
+
+        <Button
+            android:id="@+id/eliminar_cuenta"
+            android:layout_width="200dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/bg_rectangle_red"
+            android:text="Eliminar Cuenta"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cambiar_metodo" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/barra_lateral"
@@ -47,4 +248,5 @@
                 app:srcCompat="@drawable/cuadro_negro" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
