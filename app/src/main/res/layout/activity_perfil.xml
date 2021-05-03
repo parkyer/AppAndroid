@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary_blue"
-    android:foregroundTint="#F1EAEA"
     tools:context=".views.Perfil">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -216,37 +215,35 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
+        <Button
+            android:id="@+id/propietario"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/cuadro_blanco"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/perfil"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/perfil"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/perfil"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/cuadro_blanco" />
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/perfil" />
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/cuadro_negro" />
-        </LinearLayout>
+        <Button
+            android:id="@+id/arrendador"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="50dp"
+            android:background="@drawable/cuadro_negro"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/perfil"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
