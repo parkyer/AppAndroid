@@ -1,9 +1,10 @@
 package com.arquitectura.parkyer.microservicios
 
+import com.arquitectura.parkyer.MainActivity
 import com.arquitectura.parkyer.models.User
 import com.arquitectura.parkyer.service.functions.FunctionsPerfil
 
-class MicroServicioPerfil {
+class MicroServicioPerfil(mainActivity: MainActivity) {
 
     private val functionsPerfil = FunctionsPerfil()
     private var user = User(

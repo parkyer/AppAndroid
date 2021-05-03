@@ -24,8 +24,9 @@ class FunctionsAdmin2 {
 
         val paramObject = JSONObject()
         paramObject.put(
-            "query", 
-            "query {getParkings{id,id_owner,id_client,latitude,longitude,location,type}}")
+            "query",
+            "query {getParkings{id,id_owner,id_client,latitude,longitude,location,type}}"
+        )
 
         GlobalScope.launch {
             try {
@@ -46,8 +47,9 @@ class FunctionsAdmin2 {
 
         val paramObject = JSONObject()
         paramObject.put(
-            "query", 
-            "query {getParkingsUsedBy(id: ${id_client}){id,id_owner,id_client,latitude,longitude,location,type}}")
+            "query",
+            "query {getParkingsUsedBy(id: ${id_client}){id,id_owner,id_client,latitude,longitude,location,type}}"
+        )
 
         GlobalScope.launch {
             try {
@@ -68,8 +70,9 @@ class FunctionsAdmin2 {
 
         val paramObject = JSONObject()
         paramObject.put(
-            "query", 
-            "query {getAvailableParkings{id,id_owner,id_client,latitude,longitude,location,type}}")
+            "query",
+            "query {getAvailableParkings{id,id_owner,id_client,latitude,longitude,location,type}}"
+        )
 
         GlobalScope.launch {
             try {
@@ -85,7 +88,7 @@ class FunctionsAdmin2 {
             }
         }
     }
-    
+
     fun newSuscription(id: Int, id_client: String) {
 
         val paramObject = JSONObject()

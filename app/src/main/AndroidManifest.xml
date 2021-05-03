@@ -14,7 +14,8 @@
         android:theme="@style/Theme.Parkyer"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".views.Contacto"></activity>
+        <activity android:name=".views.Perfil"></activity>
+        <activity android:name=".views.Contacto" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
