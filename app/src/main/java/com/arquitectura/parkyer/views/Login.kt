@@ -33,9 +33,12 @@ class Login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         cargarInformacionLogin()
+        cancelar.setOnClickListener {
+            onBackPressed()
+        }
         login.setOnClickListener {
             val logIn = micro.Login(email.text.toString(), password.text.toString())
-            if (logIn.id != 0) {
+            if (logIn.id == 0) {
                 microPerfil.obtenerUsuario(1)
                 user.name = microPerfil.user.name
                 user.lastName = microPerfil.user.lastName

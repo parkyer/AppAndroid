@@ -4,6 +4,102 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".views.ContactoInicio">
 
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="70dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
+    <Button
+        android:id="@+id/iniciar_sesion"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/bg_rectangle_green"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logo" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:text="Carrera 45 N° 26-85, Bogotá"
+        android:textColor="@color/primary_blue"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/iniciar_sesion"
+        app:layout_constraintTop_toBottomOf="@id/logo" />
+
+    <Button
+        android:id="@+id/segundo"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/bg_rectangle_green"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView2" />
+
+    <TextView
+        android:id="@+id/segundo_texto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:text="+57 301 768 95 50"
+        android:textColor="@color/primary_blue"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/iniciar_sesion"
+        app:layout_constraintTop_toBottomOf="@id/textView2" />
+
+    <Button
+        android:id="@+id/tercero"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/bg_rectangle_green"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/segundo" />
+
+    <TextView
+        android:id="@+id/tercero_texto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:text="peter@parkyer.com.co"
+        android:textColor="@color/primary_blue"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/iniciar_sesion"
+        app:layout_constraintTop_toBottomOf="@id/segundo" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="230dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ciudad"
+        tools:layout_editor_absoluteY="16dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
