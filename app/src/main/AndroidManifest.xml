@@ -14,7 +14,16 @@
         android:theme="@style/Theme.Parkyer"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".views.Perfil"></activity>
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:label="@string/title_activity_login"></activity>
+        <activity android:name=".views.EditarPerfil" />
+        <activity
+            android:name=".views.ContactoInicio"
+            android:label="@string/title_activity_contacto_inicio"
+            android:theme="@style/Theme.Parkyer.NoActionBar" />
+        <activity android:name=".views.QuienesSomos" />
+        <activity android:name=".views.Perfil" />
         <activity android:name=".views.Contacto" />
         <activity android:name=".MainActivity">
             <intent-filter>

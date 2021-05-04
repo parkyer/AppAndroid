@@ -5,16 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary_blue"
-    tools:context=".views.Perfil">
+    tools:context=".views.EditarPerfil">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="15dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="100dp"
         android:background="@drawable/bg_rectangle_white"
-        app:layout_constraintBottom_toTopOf="@id/barra_lateral"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -33,8 +32,8 @@
             android:id="@+id/nombre_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="30dp"
             android:text="Nombre:"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -42,15 +41,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imagen" />
 
-        <TextView
+        <EditText
             android:id="@+id/nombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_rectangle_gray"
+            android:minWidth="150dp"
             android:text="Ingrese Nombre"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/nombre_label"
             app:layout_constraintTop_toBottomOf="@id/imagen" />
 
@@ -58,8 +60,8 @@
             android:id="@+id/apellido_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="30dp"
             android:text="Apellido:"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -67,15 +69,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/nombre_label" />
 
-        <TextView
+        <EditText
             android:id="@+id/apellido"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_rectangle_gray"
+            android:minWidth="150dp"
             android:text="Ingrese Apellido"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/nombre_label"
             app:layout_constraintTop_toBottomOf="@id/nombre_label" />
 
@@ -83,8 +88,8 @@
             android:id="@+id/correo_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="30dp"
             android:text="Correo:"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -92,15 +97,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/apellido_label" />
 
-        <TextView
+        <EditText
             android:id="@+id/correo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_rectangle_gray"
+            android:minWidth="150dp"
             android:text="Ingrese Correo"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/nombre_label"
             app:layout_constraintTop_toBottomOf="@id/apellido_label" />
 
@@ -108,8 +116,8 @@
             android:id="@+id/telefono_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="30dp"
             android:text="Telefono:"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -117,15 +125,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/correo_label" />
 
-        <TextView
+        <EditText
             android:id="@+id/telefono"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_rectangle_gray"
+            android:minWidth="150dp"
             android:text="Ingrese Telefono"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/nombre_label"
             app:layout_constraintTop_toBottomOf="@id/correo_label" />
 
@@ -133,8 +144,8 @@
             android:id="@+id/direccion_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="30dp"
             android:text="Dirección:"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -142,108 +153,47 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/telefono_label" />
 
-        <TextView
+        <EditText
             android:id="@+id/direccion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_rectangle_gray"
+            android:minWidth="150dp"
             android:text="Ingrese Dirección"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/nombre_label"
             app:layout_constraintTop_toBottomOf="@id/telefono_label" />
 
         <Button
             android:id="@+id/editar"
-            android:layout_width="200dp"
+            android:layout_width="100dp"
             android:layout_height="35dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="40dp"
             android:background="@drawable/bg_rectangle_green"
-            android:text="Editar Información"
+            android:text="Editar"
             android:textColor="@color/white"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/direccion_label" />
 
         <Button
-            android:id="@+id/cambiar_contrasenia"
-            android:layout_width="200dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/bg_rectangle_blue"
-            android:text="Cambiar Contraseña"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/editar" />
-
-        <Button
-            android:id="@+id/cambiar_metodo"
-            android:layout_width="200dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/bg_rectangle_blue"
-            android:text="Cambiar Método de Pago"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cambiar_contrasenia" />
-
-        <Button
             android:id="@+id/eliminar_cuenta"
-            android:layout_width="200dp"
+            android:layout_width="100dp"
             android:layout_height="35dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="40dp"
             android:background="@drawable/bg_rectangle_red"
-            android:text="Eliminar Cuenta"
+            android:text="Cancelar"
             android:textColor="@color/white"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cambiar_metodo" />
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/editar"
+            app:layout_constraintTop_toBottomOf="@id/direccion_label" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/barra_lateral"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/primary_green"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <Button
-            android:id="@+id/propietario"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginEnd="50dp"
-            android:background="@drawable/cuadro_blanco"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/perfil"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/perfil"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:background="@drawable/perfil"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/arrendador"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="50dp"
-            android:background="@drawable/cuadro_negro"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/perfil"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
