@@ -10,8 +10,6 @@ import com.arquitectura.parkyer.views.*
 import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
-    private val perfil =
-        MicroServicioPerfil(this)
 
     val user = User()
     val logIn = false
@@ -26,13 +24,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         iniciar.setOnClickListener {
-            //Agregué Iniciar Sesión
-            //val intent = Intent(this, ContactoInicio::class.java)
-            //enviarInformacion(intent)
-            //startActivity(intent)
+            val intent = Intent(this, Login::class.java)
+            enviarInformacion(intent)
+            startActivity(intent)
         }
         contacto.setOnClickListener {
-            val intent = Intent(this, Perfil::class.java)
+            val intent = Intent(this, ContactoInicio::class.java)
             enviarInformacion(intent)
             startActivity(intent)
         }

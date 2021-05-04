@@ -1,5 +1,6 @@
 package com.arquitectura.parkyer.microservicios
 
+import com.arquitectura.parkyer.models.Login
 import com.arquitectura.parkyer.models.UserLogin
 import com.arquitectura.parkyer.service.functions.FunctionsAuthentication
 
@@ -16,6 +17,7 @@ class MicroServicioAuthentication {
         1,
         "calle 1"
     )
+    var loginId = Login()
 
     fun modificarLogin(id: Int, name: String, last_name: String, email: String, password: String, phone: Int, payment_method: Int, address: String) {
         this.login.id = id
@@ -32,8 +34,11 @@ class MicroServicioAuthentication {
         function_authentication.createUser(name, last_name, email, password, phone, payment_method, address)
     }
 
-    fun Login(email: String, password: String) {
-        function_authentication.login(email, password)
+    fun Login(email: String, password: String): Login {
+        val logInLlegada = function_authentication.login(email, password)
+        loginId.id = logInLlegada.id
+        loginId.name = logInLlegada.name
+        return loginId
     }
 
 }

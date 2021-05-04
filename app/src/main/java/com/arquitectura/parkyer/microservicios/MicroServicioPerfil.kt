@@ -4,10 +4,10 @@ import com.arquitectura.parkyer.MainActivity
 import com.arquitectura.parkyer.models.User
 import com.arquitectura.parkyer.service.functions.FunctionsPerfil
 
-class MicroServicioPerfil(mainActivity: MainActivity) {
+class MicroServicioPerfil() {
 
     private val functionsPerfil = FunctionsPerfil()
-    private var user = User(
+    var user = User(
         id = 1,
         name = "Camilo",
         lastName = "Carranza",
@@ -18,8 +18,15 @@ class MicroServicioPerfil(mainActivity: MainActivity) {
         address = "calle 123"
     )
 
-    fun obtenerUsuario(id: Int) {
-        functionsPerfil.obtenerUsuario(id)
+    fun obtenerUsuario(id: Int){
+        user.name = functionsPerfil.obtenerUsuario(id).name
+        user.lastName = functionsPerfil.obtenerUsuario(id).lastName
+        user.id = functionsPerfil.obtenerUsuario(id).id
+        user.address = functionsPerfil.obtenerUsuario(id).address
+        user.paymentMethod = functionsPerfil.obtenerUsuario(id).paymentMethod
+        user.email = functionsPerfil.obtenerUsuario(id).email
+        user.phone = functionsPerfil.obtenerUsuario(id).phone
+        user.password = functionsPerfil.obtenerUsuario(id).password
     }
 
     fun editarUsuario() {

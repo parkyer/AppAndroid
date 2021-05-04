@@ -13,8 +13,8 @@ class FunctionsAuthentication {
 
     private val retrofit = ServiceBuilder.serviceBuilder
 
-    private var user: UserLogin? = UserLogin()
-    private var login: Login? = Login()
+    var user: UserLogin? = UserLogin()
+    var login: Login = Login()
 
     fun createUser(
         name: String,
@@ -48,7 +48,7 @@ class FunctionsAuthentication {
         }
     }
 
-    fun login(email: String, password: String) {
+    fun login(email: String, password: String): Login {
 
         val paramObject = JSONObject()
         paramObject.put(
@@ -60,15 +60,18 @@ class FunctionsAuthentication {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
                 val data = JSONObject(response.body().toString())
-                login = Gson().fromJson(
+                val log = Gson().fromJson(
                     JSONObject(data.get("data").toString()).get("iniciarSesion").toString(),
                     Login::class.java
                 )
+                login.id = log.id
+                login.name = log.name
                 Log.e("response", login.toString())
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
         }
+        return login
     }
 
 }

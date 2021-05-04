@@ -9,8 +9,10 @@ import android.view.Window
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.arquitectura.parkyer.MainActivity
 import com.arquitectura.parkyer.R
 import com.arquitectura.parkyer.models.User
+import kotlinx.android.synthetic.main.activity_login.*
 
 class Perfil : AppCompatActivity() {
 
@@ -24,11 +26,6 @@ class Perfil : AppCompatActivity() {
     val campiarMetodo by lazy { findViewById(R.id.cambiar_metodo) as Button }
     val eliminar by lazy { findViewById(R.id.eliminar_cuenta) as Button }
 
-    //Botones Menu
-    val propietario by lazy { findViewById(R.id.propietario) as Button }
-    val perfil by lazy { findViewById(R.id.perfil) as Button }
-    val arrendador by lazy { findViewById(R.id.arrendador) as Button }
-
     //Textos
     val nombre by lazy { findViewById(R.id.nombre) as TextView }
     val apellido by lazy { findViewById(R.id.apellido) as TextView }
@@ -40,38 +37,46 @@ class Perfil : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_perfil)
         cargarInformacion()
+        nombre.text = user.name
+        apellido.text = user.lastName
+        correo.text = user.email
+        telefono.text = user.phone.toString()
+        direccion.text = user.address
         editar.setOnClickListener {
-            nombre.text = user.name
-            apellido.text = user.lastName
+            val intent = Intent(this, EditarPerfil::class.java)
+            enviarInformacion(intent)
+            startActivity(intent)
         }
-        showDialog()
+        cambiarConstrasenia.setOnClickListener {
+            val intent = Intent(this, CambiarContrasenia::class.java)
+            enviarInformacion(intent)
+            startActivity(intent)
+        }
+        campiarMetodo.setOnClickListener {
+            val intent = Intent(this, CambiarMetodo::class.java)
+            enviarInformacion(intent)
+            startActivity(intent)
+        }
+        eliminar.setOnClickListener {
+            showDialog()
+        }
     }
 
     private fun showDialog() {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Androidly Alert")
-        builder.setMessage("We have a message")
+        builder.setTitle("¿Eliminar Cuenta?")
+        builder.setMessage("¿Deseas eliminar tu cuenta de manera permanente?")
         //builder.setPositiveButton("OK", DialogInterface.OnClickListener(function = x))
 
-        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+        builder.setPositiveButton("Eliminar") { dialog, which ->
             Toast.makeText(
                 applicationContext,
-                android.R.string.yes, Toast.LENGTH_SHORT
+                "Eliminado", Toast.LENGTH_SHORT
             ).show()
         }
 
-        builder.setNegativeButton(android.R.string.no) { dialog, which ->
-            Toast.makeText(
-                applicationContext,
-                android.R.string.no, Toast.LENGTH_SHORT
-            ).show()
-        }
+        builder.setNegativeButton("Cancelar") { dialog, which ->
 
-        builder.setNeutralButton("Maybe") { dialog, which ->
-            Toast.makeText(
-                applicationContext,
-                "Maybe", Toast.LENGTH_SHORT
-            ).show()
         }
         builder.show()
     }

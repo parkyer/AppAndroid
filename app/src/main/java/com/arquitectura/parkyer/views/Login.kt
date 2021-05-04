@@ -1,57 +1,86 @@
 package com.arquitectura.parkyer.views
 
+import android.app.ProgressDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.TextView
+import android.widget.EditText
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.arquitectura.parkyer.R
-import com.arquitectura.parkyer.models.UserLogin
+import com.arquitectura.parkyer.microservicios.MicroServicioAuthentication
+import com.arquitectura.parkyer.microservicios.MicroServicioPerfil
+import com.arquitectura.parkyer.models.User
+
 
 class Login : AppCompatActivity() {
     //globales
-    val userlog = UserLogin()
-    var logIn = false
+    var logInGlobal = false
+    var user = User()
 
     //Botones
     val login by lazy { findViewById(R.id.editar) as Button }
     val cancelar by lazy { findViewById(R.id.eliminar_cuenta) as Button }
 
     //Textos
-    val email by lazy { findViewById(R.id.email) as TextView }
-    val password by lazy { findViewById(R.id.password) as TextView }
+    val email by lazy { findViewById(R.id.email) as EditText }
+    val password by lazy { findViewById(R.id.password) as EditText }
+
+    val micro = MicroServicioAuthentication()
+    val microPerfil = MicroServicioPerfil()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         cargarInformacionLogin()
         login.setOnClickListener {
-            email.text = userlog.email
-            password.text = userlog.password
+            val logIn = micro.Login(email.text.toString(), password.text.toString())
+            if (logIn.id != 0) {
+                microPerfil.obtenerUsuario(1)
+                user.name = microPerfil.user.name
+                user.lastName = microPerfil.user.lastName
+                user.id = microPerfil.user.id
+                user.address = microPerfil.user.address
+                user.paymentMethod = microPerfil.user.paymentMethod
+                user.email = microPerfil.user.email
+                user.phone = microPerfil.user.phone
+                user.password = microPerfil.user.password
+                logInGlobal = true
+                var f = true
+                val intent = Intent(this, Perfil::class.java)
+                enviarInformacionLogin(intent)
+                startActivity(intent)
+            } else {
+                user = User()
+                Toast.makeText(
+                    applicationContext,
+                    "Usuario o Contraseña Incorrecto", Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     }
 
     fun cargarInformacionLogin() {
-        userlog.id = intent.getIntExtra("id", 0)
-        userlog.name = intent.getStringExtra("name")
-        userlog.last_name = intent.getStringExtra("last_name")
-        userlog.email = intent.getStringExtra("email")
-        userlog.password = intent.getStringExtra("password")
-        userlog.phone = intent.getIntExtra("phone", 0)
-        userlog.payment_method = intent.getIntExtra("payment_method", 0)
-        userlog.address = intent.getStringExtra("address")
-        logIn = intent.getBooleanExtra("logIn", true)
+        user.id = intent.getIntExtra("id", 0)
+        user.name = intent.getStringExtra("name")
+        user.lastName = intent.getStringExtra("lastName")
+        user.email = intent.getStringExtra("email")
+        user.password = intent.getStringExtra("password")
+        user.phone = intent.getIntExtra("phone", 0)
+        user.paymentMethod = intent.getIntExtra("paymentMethod", 0)
+        user.address = intent.getStringExtra("address")
+        logInGlobal = intent.getBooleanExtra("logIn", false)
     }
 
     fun enviarInformacionLogin(intent: Intent) {
-        intent.putExtra("id", userlog.id)
-        intent.putExtra("name", userlog.name)
-        intent.putExtra("lastName", userlog.last_name)
-        intent.putExtra("email", userlog.email)
-        intent.putExtra("password", userlog.password)
-        intent.putExtra("phone", userlog.phone)
-        intent.putExtra("paymentMethod", userlog.payment_method)
-        intent.putExtra("address", userlog.address)
-        intent.putExtra("logIn", logIn)
+        intent.putExtra("id", user.id)
+        intent.putExtra("name", user.name)
+        intent.putExtra("lastName", user.lastName)
+        intent.putExtra("email", user.email)
+        intent.putExtra("password", user.password)
+        intent.putExtra("phone", user.phone)
+        intent.putExtra("paymentMethod", user.paymentMethod)
+        intent.putExtra("address", user.address)
+        intent.putExtra("logIn", logInGlobal)
     }
 }
