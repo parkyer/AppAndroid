@@ -38,8 +38,8 @@ class Login : AppCompatActivity() {
         }
         login.setOnClickListener {
             val logIn = micro.Login(email.text.toString(), password.text.toString())
-            if (logIn.id == 0) {
-                microPerfil.obtenerUsuario(1)
+            if (logIn.name != "Denied") {
+                logIn.id?.let { it1 -> microPerfil.obtenerUsuario(it1) }
                 user.name = microPerfil.user.name
                 user.lastName = microPerfil.user.lastName
                 user.id = microPerfil.user.id

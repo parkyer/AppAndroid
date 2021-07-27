@@ -53,12 +53,13 @@ class FunctionsAuthentication {
         val paramObject = JSONObject()
         paramObject.put(
             "query",
-            "mutation {iniciarSesion(login:{email: \"${email}\", password: \"${password}\"}){name, id}}"
+            "mutation {iniciarSesion(login:{email: \"${email}\", password: \"${password}\"}){access, id}}"
         )
 
         GlobalScope.launch {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
+                Log.e("response", response.body().toString())
                 val data = JSONObject(response.body().toString())
                 val log = Gson().fromJson(
                     JSONObject(data.get("data").toString()).get("iniciarSesion").toString(),

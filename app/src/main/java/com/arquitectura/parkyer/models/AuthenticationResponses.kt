@@ -14,6 +14,6 @@ data class UserLogin(
 )
 
 data class Login(
-    @SerializedName("name") var name: String? = "",
+    @SerializedName("access") var name: String? = "",
     @SerializedName("id") var id: Int? = 0
 )

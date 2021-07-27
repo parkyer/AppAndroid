@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.arquitectura.parkyer.MainActivity
 import com.arquitectura.parkyer.R
+import com.arquitectura.parkyer.models.Parking
 import com.arquitectura.parkyer.models.User
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -25,6 +26,7 @@ class Perfil : AppCompatActivity() {
     val cambiarConstrasenia by lazy { findViewById(R.id.cambiar_contrasenia) as Button }
     val campiarMetodo by lazy { findViewById(R.id.cambiar_metodo) as Button }
     val eliminar by lazy { findViewById(R.id.eliminar_cuenta) as Button }
+    val parking by lazy { findViewById(R.id.parking) as Button }
 
     //Textos
     val nombre by lazy { findViewById(R.id.nombre) as TextView }
@@ -59,6 +61,11 @@ class Perfil : AppCompatActivity() {
         }
         eliminar.setOnClickListener {
             showDialog()
+        }
+        parking.setOnClickListener {
+            val intent = Intent(this, CambiarMetodo::class.java)
+            enviarInformacion(intent)
+            startActivity(intent)
         }
     }
 

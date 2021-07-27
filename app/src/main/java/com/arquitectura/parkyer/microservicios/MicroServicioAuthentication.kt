@@ -1,5 +1,6 @@
 package com.arquitectura.parkyer.microservicios
 
+import android.util.Log
 import com.arquitectura.parkyer.models.Login
 import com.arquitectura.parkyer.models.UserLogin
 import com.arquitectura.parkyer.service.functions.FunctionsAuthentication
@@ -38,6 +39,8 @@ class MicroServicioAuthentication {
         val logInLlegada = function_authentication.login(email, password)
         loginId.id = logInLlegada.id
         loginId.name = logInLlegada.name
+        Log.e("response", "Esto es global "+loginId.toString())
+        Log.e("response", "Esto es de la función "+logInLlegada.toString())
         return loginId
     }
 
