@@ -63,8 +63,7 @@ class Perfil : AppCompatActivity() {
             showDialog()
         }
         parking.setOnClickListener {
-            val intent = Intent(this, CambiarMetodo::class.java)
-            enviarInformacion(intent)
+            val intent = Intent(this, Parking::class.java)
             startActivity(intent)
         }
     }
