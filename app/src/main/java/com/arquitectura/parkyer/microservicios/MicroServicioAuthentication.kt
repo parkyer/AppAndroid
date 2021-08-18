@@ -4,6 +4,7 @@ import android.util.Log
 import com.arquitectura.parkyer.models.Login
 import com.arquitectura.parkyer.models.UserLogin
 import com.arquitectura.parkyer.service.functions.FunctionsAuthentication
+import io.reactivex.Single
 
 class MicroServicioAuthentication {
 
@@ -20,7 +21,16 @@ class MicroServicioAuthentication {
     )
     var loginId = Login()
 
-    fun modificarLogin(id: Int, name: String, last_name: String, email: String, password: String, phone: Int, payment_method: Int, address: String) {
+    fun modificarLogin(
+        id: Int,
+        name: String,
+        last_name: String,
+        email: String,
+        password: String,
+        phone: Int,
+        payment_method: Int,
+        address: String
+    ) {
         this.login.id = id
         this.login.name = name
         this.login.last_name = last_name
@@ -31,17 +41,33 @@ class MicroServicioAuthentication {
         this.login.address = address
     }
 
-    fun crearUsuario(name: String, last_name: String, email: String, password: String, phone: Int, payment_method: Int, address: String) {
-        function_authentication.createUser(name, last_name, email, password, phone, payment_method, address)
+    fun crearUsuario(
+        name: String,
+        last_name: String,
+        email: String,
+        password: String,
+        phone: Int,
+        payment_method: Int,
+        address: String
+    ) {
+        function_authentication.createUser(
+            name,
+            last_name,
+            email,
+            password,
+            phone,
+            payment_method,
+            address
+        )
     }
 
-    fun Login(email: String, password: String): Login {
+    fun Login(email: String, password: String): Single<Login> {
         val logInLlegada = function_authentication.login(email, password)
         loginId.id = logInLlegada.id
         loginId.name = logInLlegada.name
-        Log.e("response", "Esto es global "+loginId.toString())
-        Log.e("response", "Esto es de la función "+logInLlegada.toString())
-        return loginId
+        Log.e("response", "Esto es global " + loginId.toString())
+        Log.e("response", "Esto es de la función " + logInLlegada.toString())
+        return Single.just(loginId)
     }
 
 }

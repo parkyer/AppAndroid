@@ -1,6 +1,5 @@
 package com.arquitectura.parkyer.views
 
-import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -10,7 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.arquitectura.parkyer.R
 import com.arquitectura.parkyer.microservicios.MicroServicioAuthentication
 import com.arquitectura.parkyer.microservicios.MicroServicioPerfil
+import com.arquitectura.parkyer.models.Login
 import com.arquitectura.parkyer.models.User
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 
 
 class Login : AppCompatActivity() {
@@ -29,6 +32,8 @@ class Login : AppCompatActivity() {
     val micro = MicroServicioAuthentication()
     val microPerfil = MicroServicioPerfil()
 
+    private val compositeDisposable = CompositeDisposable()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -37,29 +42,48 @@ class Login : AppCompatActivity() {
             onBackPressed()
         }
         login.setOnClickListener {
-            val logIn = micro.Login(email.text.toString(), password.text.toString())
-            if (logIn.name != "Denied") {
-                logIn.id?.let { it1 -> microPerfil.obtenerUsuario(it1) }
-                user.name = microPerfil.user.name
-                user.lastName = microPerfil.user.lastName
-                user.id = microPerfil.user.id
-                user.address = microPerfil.user.address
-                user.paymentMethod = microPerfil.user.paymentMethod
-                user.email = microPerfil.user.email
-                user.phone = microPerfil.user.phone
-                user.password = microPerfil.user.password
-                logInGlobal = true
-                var f = true
-                val intent = Intent(this, Perfil::class.java)
-                enviarInformacionLogin(intent)
-                startActivity(intent)
-            } else {
-                user = User()
-                Toast.makeText(
-                    applicationContext,
-                    "Usuario o Contraseña Incorrecto", Toast.LENGTH_SHORT
-                ).show()
-            }
+            compositeDisposable.add(
+                micro.Login(email.text.toString(), password.text.toString())
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({
+                        verificarLogIn(it)
+                    }, {
+                        verificarLogIn(Login(name = "Denied"))
+                    })
+            )
+        }
+    }
+
+    fun verificarLogIn(login: Login) {
+        if(login.name == "Wait"){
+            user = User()
+            Toast.makeText(
+                applicationContext,
+                "Servidor No Responde", Toast.LENGTH_SHORT
+            ).show()
+        }
+        else if (login.name != "Denied") {
+            login.id?.let { it1 -> microPerfil.obtenerUsuario(it1) }
+            user.name = microPerfil.user.name
+            user.lastName = microPerfil.user.lastName
+            user.id = microPerfil.user.id
+            user.address = microPerfil.user.address
+            user.paymentMethod = microPerfil.user.paymentMethod
+            user.email = microPerfil.user.email
+            user.phone = microPerfil.user.phone
+            user.password = microPerfil.user.password
+            logInGlobal = true
+            var f = true
+            val intent = Intent(this, Perfil::class.java)
+            enviarInformacionLogin(intent)
+            startActivity(intent)
+        } else {
+            user = User()
+            Toast.makeText(
+                applicationContext,
+                "Usuario o Contraseña Incorrecto", Toast.LENGTH_SHORT
+            ).show()
         }
     }
 

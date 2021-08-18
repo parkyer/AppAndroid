@@ -14,7 +14,7 @@ class FunctionsAuthentication {
     private val retrofit = ServiceBuilder.serviceBuilder
 
     var user: UserLogin? = UserLogin()
-    var login: Login = Login()
+    var login: Login = Login(name = "Wait")
 
     fun createUser(
         name: String,
