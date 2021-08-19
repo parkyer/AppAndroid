@@ -19,7 +19,7 @@ class FunctionsPerfil {
         val paramObject = JSONObject()
         paramObject.put("query", "query{ getUser(id: ${id}) {id, name, last_name, email,address,password,payment_method,phone}}")
 
-        GlobalScope.launch {
+        /*GlobalScope.launch {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
                 val data = JSONObject(response.body().toString())
@@ -38,7 +38,7 @@ class FunctionsPerfil {
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
-        }
+        }*/
         return userSalida
     }
 
@@ -50,14 +50,14 @@ class FunctionsPerfil {
             "mutation { updateUser(id: ${user.id}, user: {name: \"${user.name}\", last_name: \"${user.lastName}\", email: \"${user.email}\", phone: ${user.phone}, address: \"${user.address}\"}) {id,name,last_name,email,password,phone,payment_method,address}}"
         )
 
-        GlobalScope.launch {
+        /*GlobalScope.launch {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
                 Log.e("response", response.body().toString())
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
-        }
+        }*/
     }
 
     fun cambiarContrasenia(user: User) {
@@ -68,14 +68,14 @@ class FunctionsPerfil {
             "mutation { changePassword(id: ${user.id}, password: {password: \"${user.password}\"}){id,name,last_name,email,password,phone,payment_method,address}}"
         )
 
-        GlobalScope.launch {
+        /*GlobalScope.launch {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
                 Log.e("response", response.body().toString())
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
-        }
+        }*/
     }
 
     fun agregarMetodoDePago(user: User) {
@@ -86,14 +86,14 @@ class FunctionsPerfil {
             "mutation { addPaymentMethod(id: ${user.id}, payment: {payment_method: \"${user.paymentMethod}\"}){id,name,last_name,email,password,phone,payment_method,address}}"
         )
 
-        GlobalScope.launch {
+        /*GlobalScope.launch {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
                 Log.e("response", response.body().toString())
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
-        }
+        }*/
     }
 
     fun borrarUsuario(user: User) {
@@ -104,13 +104,13 @@ class FunctionsPerfil {
             "mutation { deleteUser(id:${user.id}){id,name,last_name,email,password,phone,payment_method,address}}"
         )
 
-        GlobalScope.launch {
+        /*GlobalScope.launch {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
                 Log.e("response", response.body().toString())
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
-        }
+        }*/
     }
 }

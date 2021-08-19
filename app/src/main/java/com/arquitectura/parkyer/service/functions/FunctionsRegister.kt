@@ -28,7 +28,7 @@ class FunctionsRegister {
             "query",
             "query {getRegister(id: \"${id}\"){Id,User,ParkingId,Type,Date}}")
 
-        GlobalScope.launch {
+        /*GlobalScope.launch {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
                 val data = JSONObject(response.body().toString())
@@ -40,7 +40,7 @@ class FunctionsRegister {
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
-        }
+        }*/
     }
 
     fun getAll() {
@@ -50,7 +50,7 @@ class FunctionsRegister {
             "query", 
             "query {get_Registers{Id,User,ParkingId,Type,Date}}")
 
-        GlobalScope.launch {
+        /*GlobalScope.launch {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
                 val data = JSONObject(response.body().toString())
@@ -62,7 +62,7 @@ class FunctionsRegister {
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
-        }
+        }*/
     }
 
     fun getUser(user: Int) {
@@ -72,7 +72,7 @@ class FunctionsRegister {
             "query",
             "query {getRegisterUser(user: ${user}){Id,User,ParkingId,Type,Date}}")
 
-        GlobalScope.launch {
+        /*GlobalScope.launch {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
                 val data = JSONObject(response.body().toString())
@@ -84,7 +84,7 @@ class FunctionsRegister {
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
-        }
+        }*/
     }
 
     fun getParking(parking: Int) {
@@ -94,7 +94,7 @@ class FunctionsRegister {
             "query",
             "query {getRegisterParking(parkingId: ${parking}){Id,User,ParkingId,Type,Date}}")
 
-        GlobalScope.launch {
+        /*GlobalScope.launch {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
                 val data = JSONObject(response.body().toString())
@@ -106,7 +106,7 @@ class FunctionsRegister {
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
-        }
+        }*/
     }
 
     fun create(user: Int, parking: Int, type: String, date: String) {
@@ -116,7 +116,7 @@ class FunctionsRegister {
             "query",
             "mutation {createRegister(Register: {user: ${user}, parking: ${parking}, type: \"${type}\", date: \"${date}\"}){Id,User,ParkingId,Type,Date}}")
 
-        GlobalScope.launch {
+        /*GlobalScope.launch {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
                 val data = JSONObject(response.body().toString())
@@ -128,7 +128,7 @@ class FunctionsRegister {
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
-        }
+        }*/
     }
 
     fun delete(id: String) {
@@ -138,14 +138,14 @@ class FunctionsRegister {
             "query",
             "mutation {deleteRegister(id: \"${id}\")}")
 
-        GlobalScope.launch {
+        /*GlobalScope.launch {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
                 Log.e("response", response.toString())
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
-        }
+        }*/
     }
 
 }

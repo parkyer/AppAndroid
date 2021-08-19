@@ -1,19 +1,20 @@
 package com.arquitectura.parkyer.views
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.arquitectura.parkyer.R
 import com.arquitectura.parkyer.microservicios.MicroServicioAuthentication
 import com.arquitectura.parkyer.microservicios.MicroServicioPerfil
 import com.arquitectura.parkyer.models.Login
 import com.arquitectura.parkyer.models.User
+import com.google.gson.Gson
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import org.json.JSONObject
 
 
 class Login : AppCompatActivity() {
@@ -34,10 +35,13 @@ class Login : AppCompatActivity() {
 
     private val compositeDisposable = CompositeDisposable()
 
+    lateinit var progressDialog: ProgressDialog
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         cargarInformacionLogin()
+        progressDialog = ProgressDialog(this)
         cancelar.setOnClickListener {
             onBackPressed()
         }
@@ -46,9 +50,21 @@ class Login : AppCompatActivity() {
                 micro.Login(email.text.toString(), password.text.toString())
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
+                    .doOnSubscribe{
+                        progressDialog.setTitle("Iniciando Sesión")
+                        progressDialog.setCancelable(false)
+                        progressDialog.show()
+                    }
                     .subscribe({
-                        verificarLogIn(it)
+                        progressDialog.cancel()
+                        val data = JSONObject(it)
+                        val log = Gson().fromJson(
+                            JSONObject(data.get("data").toString()).get("iniciarSesion").toString(),
+                            Login::class.java
+                        )
+                        verificarLogIn(Login(log.name, log.id))
                     }, {
+                        progressDialog.cancel()
                         verificarLogIn(Login(name = "Denied"))
                     })
             )
@@ -56,14 +72,7 @@ class Login : AppCompatActivity() {
     }
 
     fun verificarLogIn(login: Login) {
-        if(login.name == "Wait"){
-            user = User()
-            Toast.makeText(
-                applicationContext,
-                "Servidor No Responde", Toast.LENGTH_SHORT
-            ).show()
-        }
-        else if (login.name != "Denied") {
+        if (login.name != "Denied") {
             login.id?.let { it1 -> microPerfil.obtenerUsuario(it1) }
             user.name = microPerfil.user.name
             user.lastName = microPerfil.user.lastName
@@ -74,7 +83,6 @@ class Login : AppCompatActivity() {
             user.phone = microPerfil.user.phone
             user.password = microPerfil.user.password
             logInGlobal = true
-            var f = true
             val intent = Intent(this, Perfil::class.java)
             enviarInformacionLogin(intent)
             startActivity(intent)

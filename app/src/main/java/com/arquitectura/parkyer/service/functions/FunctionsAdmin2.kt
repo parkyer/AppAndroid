@@ -28,7 +28,7 @@ class FunctionsAdmin2 {
             "query {getParkings{id,id_owner,id_client,latitude,longitude,location,type}}"
         )
 
-        GlobalScope.launch {
+        /*GlobalScope.launch {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
                 val data = JSONObject(response.body().toString())
@@ -40,7 +40,7 @@ class FunctionsAdmin2 {
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
-        }
+        }*/
     }
 
     fun getParkingsUsedBy(id_client: Int) {
@@ -51,7 +51,7 @@ class FunctionsAdmin2 {
             "query {getParkingsUsedBy(id: ${id_client}){id,id_owner,id_client,latitude,longitude,location,type}}"
         )
 
-        GlobalScope.launch {
+        /*GlobalScope.launch {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
                 val data = JSONObject(response.body().toString())
@@ -63,7 +63,7 @@ class FunctionsAdmin2 {
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
-        }
+        }*/
     }
 
     fun getAvailableParkings() {
@@ -74,7 +74,7 @@ class FunctionsAdmin2 {
             "query {getAvailableParkings{id,id_owner,id_client,latitude,longitude,location,type}}"
         )
 
-        GlobalScope.launch {
+        /*GlobalScope.launch {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
                 val data = JSONObject(response.body().toString())
@@ -86,7 +86,7 @@ class FunctionsAdmin2 {
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
-        }
+        }*/
     }
 
     fun newSuscription(id: Int, id_client: String) {
@@ -97,7 +97,7 @@ class FunctionsAdmin2 {
             "mutation {newSuscription(id:${id},client:{id_client:\"${id_client}\"}){id,id_owner,id_client,latitude,longitude,location,type}}"
         )
 
-        GlobalScope.launch {
+        /*GlobalScope.launch {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
                 val data = JSONObject(response.body().toString())
@@ -112,7 +112,7 @@ class FunctionsAdmin2 {
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
-        }
+        }*/
     }
 
     fun deleteSuscription(id: Int) {
@@ -123,7 +123,7 @@ class FunctionsAdmin2 {
             "mutation {deleteSuscription(id:${id}){id,id_owner,id_client,latitude,longitude,location,type}}"
         )
 
-        GlobalScope.launch {
+        /*GlobalScope.launch {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
                 val data = JSONObject(response.body().toString())
@@ -138,6 +138,6 @@ class FunctionsAdmin2 {
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
-        }
+        }*/
     }
 }

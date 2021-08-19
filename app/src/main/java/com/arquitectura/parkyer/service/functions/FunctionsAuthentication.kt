@@ -5,9 +5,9 @@ import com.a.graphqlwithretrofit.ServiceBuilder
 import com.arquitectura.parkyer.models.UserLogin
 import com.arquitectura.parkyer.models.Login
 import com.google.gson.Gson
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import io.reactivex.Single
 import org.json.JSONObject
+import retrofit2.Response
 
 class FunctionsAuthentication {
 
@@ -33,7 +33,7 @@ class FunctionsAuthentication {
                     "{id,name, last_name, email, password, phone, payment_method, address}}"
         )
 
-        GlobalScope.launch {
+        /*GlobalScope.launch {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
                 val data = JSONObject(response.body().toString())
@@ -45,10 +45,10 @@ class FunctionsAuthentication {
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
-        }
+        }*/
     }
 
-    fun login(email: String, password: String): Login {
+    fun login(email: String, password: String): Single<String> {
 
         val paramObject = JSONObject()
         paramObject.put(
@@ -56,23 +56,7 @@ class FunctionsAuthentication {
             "mutation {iniciarSesion(login:{email: \"${email}\", password: \"${password}\"}){access, id}}"
         )
 
-        GlobalScope.launch {
-            try {
-                val response = retrofit.sendRequest(paramObject.toString())
-                Log.e("response", response.body().toString())
-                val data = JSONObject(response.body().toString())
-                val log = Gson().fromJson(
-                    JSONObject(data.get("data").toString()).get("iniciarSesion").toString(),
-                    Login::class.java
-                )
-                login.id = log.id
-                login.name = log.name
-                Log.e("response", login.toString())
-            } catch (e: java.lang.Exception) {
-                e.printStackTrace()
-            }
-        }
-        return login
+        return retrofit.sendRequest(paramObject.toString())
     }
 
 }

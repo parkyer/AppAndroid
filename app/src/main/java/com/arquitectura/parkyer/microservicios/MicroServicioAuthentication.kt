@@ -5,6 +5,7 @@ import com.arquitectura.parkyer.models.Login
 import com.arquitectura.parkyer.models.UserLogin
 import com.arquitectura.parkyer.service.functions.FunctionsAuthentication
 import io.reactivex.Single
+import retrofit2.Response
 
 class MicroServicioAuthentication {
 
@@ -61,13 +62,14 @@ class MicroServicioAuthentication {
         )
     }
 
-    fun Login(email: String, password: String): Single<Login> {
-        val logInLlegada = function_authentication.login(email, password)
+    fun Login(email: String, password: String): Single<String> {
+        return function_authentication.login(email, password)
+        /*val logInLlegada = function_authentication.login(email, password)
         loginId.id = logInLlegada.id
         loginId.name = logInLlegada.name
         Log.e("response", "Esto es global " + loginId.toString())
         Log.e("response", "Esto es de la función " + logInLlegada.toString())
-        return Single.just(loginId)
+        return Single.just(loginId)*/
     }
 
 }

@@ -23,7 +23,7 @@ class FunctionsContacto {
         val paramObject = JSONObject()
         paramObject.put("query", "query {getInicio{idmensaje,id_usuario,mensaje,tipo}}")
 
-        GlobalScope.launch {
+        /*GlobalScope.launch {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
                 val data = JSONObject(response.body().toString())
@@ -35,7 +35,7 @@ class FunctionsContacto {
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
-        }
+        }*/
     }
 
     fun enviarMensaje(mensaje: Mensaje) {
@@ -45,7 +45,7 @@ class FunctionsContacto {
             "query",
             "mutation { crearMensaje(mensaje: { mensaje: \"${mensaje.mensaje}\", idmensaje: ${mensaje.idMensajes}, id_usuario: ${mensaje.idUsuario}, tipo: \"${mensaje.tipo}\" }) { mensaje } }"
         )
-        GlobalScope.launch {
+        /*GlobalScope.launch {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
                 val data = JSONObject(response.body().toString())
@@ -64,6 +64,6 @@ class FunctionsContacto {
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
-        }
+        }*/
     }
 }

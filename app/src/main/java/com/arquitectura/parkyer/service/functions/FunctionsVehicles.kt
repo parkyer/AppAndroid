@@ -26,7 +26,7 @@ class FunctionsVehicles {
             "query",
             "query {getAllVehicles{id,id_client,tipo,tamano,descripcion}}")
 
-        GlobalScope.launch {
+        /*GlobalScope.launch {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
                 val data = JSONObject(response.body().toString())
@@ -38,7 +38,7 @@ class FunctionsVehicles {
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
-        }
+        }*/
     }
 
     fun getByID(id: Int) {
@@ -48,7 +48,7 @@ class FunctionsVehicles {
             "query", 
             "query {getVehicle(id: ${id}){id,id_client,tipo,tamano,descripcion}}")
 
-        GlobalScope.launch {
+        /*GlobalScope.launch {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
                 val data = JSONObject(response.body().toString())
@@ -60,7 +60,7 @@ class FunctionsVehicles {
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
-        }
+        }*/
     }
 
     fun new(id_client: Int, tipo: String, tamano: String, descripcion: String) {
@@ -70,7 +70,7 @@ class FunctionsVehicles {
             "query", 
             "mutation {createVehicle(vehicle: {id_client: ${id_client},tipo: \"${tipo}\",tamano: \"${tamano}\",descripcion: \"${descripcion}\"}){id,id_client,tipo,tamano,descripcion}}")
 
-        GlobalScope.launch {
+        /*GlobalScope.launch {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
                 val data = JSONObject(response.body().toString())
@@ -82,7 +82,7 @@ class FunctionsVehicles {
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
-        }
+        }*/
     }
 
     fun update(id: Int, tipo: String, tamano: String, descripcion: String) {
@@ -92,7 +92,7 @@ class FunctionsVehicles {
             "query",
             "mutation {updateVehicle(id: ${id},vehicle: {tipo: \"${tipo}\",tamano: \"${tamano}\",descripcion: \"${descripcion}\"}){id,id_client,tipo,tamano,descripcion}}")
 
-        GlobalScope.launch {
+        /*GlobalScope.launch {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
                 val data = JSONObject(response.body().toString())
@@ -104,7 +104,7 @@ class FunctionsVehicles {
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
-        }
+        }*/
     }
 
     fun delete(id: Int) {
@@ -115,14 +115,14 @@ class FunctionsVehicles {
             "mutation {deleteVehicle(id: ${id})}"
         )
 
-        GlobalScope.launch {
+        /*GlobalScope.launch {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
                 Log.e("response", response.toString())
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
-        }
+        }*/
     }
     
 }
