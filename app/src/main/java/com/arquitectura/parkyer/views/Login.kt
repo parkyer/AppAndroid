@@ -3,6 +3,7 @@ package com.arquitectura.parkyer.views
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.arquitectura.parkyer.R
@@ -50,7 +51,7 @@ class Login : AppCompatActivity() {
                 micro.Login(email.text.toString(), password.text.toString())
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .doOnSubscribe{
+                    .doOnSubscribe {
                         progressDialog.setTitle("Iniciando Sesión")
                         progressDialog.setCancelable(false)
                         progressDialog.show()
@@ -58,6 +59,7 @@ class Login : AppCompatActivity() {
                     .subscribe({
                         progressDialog.cancel()
                         val data = JSONObject(it)
+                        Log.d("response", data.toString())
                         val log = Gson().fromJson(
                             JSONObject(data.get("data").toString()).get("iniciarSesion").toString(),
                             Login::class.java
@@ -73,19 +75,40 @@ class Login : AppCompatActivity() {
 
     fun verificarLogIn(login: Login) {
         if (login.name != "Denied") {
-            login.id?.let { it1 -> microPerfil.obtenerUsuario(it1) }
-            user.name = microPerfil.user.name
-            user.lastName = microPerfil.user.lastName
-            user.id = microPerfil.user.id
-            user.address = microPerfil.user.address
-            user.paymentMethod = microPerfil.user.paymentMethod
-            user.email = microPerfil.user.email
-            user.phone = microPerfil.user.phone
-            user.password = microPerfil.user.password
-            logInGlobal = true
-            val intent = Intent(this, Perfil::class.java)
-            enviarInformacionLogin(intent)
-            startActivity(intent)
+            login.id?.let { id ->
+                compositeDisposable.add(
+                    microPerfil.obtenerUsuario(id)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .doOnSubscribe {
+                            progressDialog.setTitle("Cargando Datos")
+                            progressDialog.setCancelable(false)
+                            progressDialog.show()
+                        }
+                        .subscribe({
+                            progressDialog.cancel()
+                            val data = JSONObject(it)
+                            Log.d("response", data.toString())
+                            val getUser = JSONObject(data.get("data").toString())
+                            val userJson = JSONObject(getUser.get("getUser").toString())
+                            val usuario = Gson().fromJson(userJson.toString(), User::class.java)
+                            user.name = usuario.name
+                            user.lastName = usuario.lastName
+                            user.id = usuario.id
+                            user.address = usuario.address
+                            user.paymentMethod = usuario.paymentMethod
+                            user.email = usuario.email
+                            user.phone = usuario.phone
+                            user.password = usuario.password
+                            logInGlobal = true
+                            val intent = Intent(this, Perfil::class.java)
+                            enviarInformacionLogin(intent)
+                            startActivity(intent)
+                        }, {
+                            progressDialog.cancel()
+                        })
+                )
+            }
         } else {
             user = User()
             Toast.makeText(

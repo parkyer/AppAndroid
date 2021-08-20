@@ -1,45 +1,23 @@
 package com.arquitectura.parkyer.service.functions
 
-import android.util.Log
 import com.a.graphqlwithretrofit.ServiceBuilder
-import com.arquitectura.parkyer.models.Respuesta
 import com.arquitectura.parkyer.models.User
-import com.google.gson.Gson
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import io.reactivex.Single
 import org.json.JSONObject
 
 class FunctionsPerfil {
 
     private val retrofit = ServiceBuilder.serviceBuilder
-    var userSalida =  User()
 
-    fun obtenerUsuario(id: Int): User {
+    fun obtenerUsuario(id: Int): Single<String> {
 
         val paramObject = JSONObject()
-        paramObject.put("query", "query{ getUser(id: ${id}) {id, name, last_name, email,address,password,payment_method,phone}}")
+        paramObject.put(
+            "query",
+            "query{ getUser(id: ${id}) {id, name, last_name, email,address,password,payment_method,phone}}"
+        )
 
-        /*GlobalScope.launch {
-            try {
-                val response = retrofit.sendRequest(paramObject.toString())
-                val data = JSONObject(response.body().toString())
-                val getUser = JSONObject(data.get("data").toString())
-                val user = JSONObject(getUser.get("getUser").toString())
-                val usuario = Gson().fromJson(user.toString(), User::class.java)
-                userSalida.name = usuario.name
-                userSalida.lastName = usuario.lastName
-                userSalida.id = usuario.id
-                userSalida.address = usuario.address
-                userSalida.paymentMethod = usuario.paymentMethod
-                userSalida.email = usuario.email
-                userSalida.phone = usuario.phone
-                userSalida.password = usuario.password
-                Log.e("response", getUser.get("getUser").toString())
-            } catch (e: java.lang.Exception) {
-                e.printStackTrace()
-            }
-        }*/
-        return userSalida
+        return retrofit.sendRequest(paramObject.toString())
     }
 
     fun editarUsuario(user: User) {
