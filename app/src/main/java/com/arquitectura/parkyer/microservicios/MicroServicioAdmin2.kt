@@ -7,13 +7,13 @@ class MicroServicioAdmin2 {
 
     private val functions_admin2 = FunctionsAdmin2()
     private var parking = Parking(
-        1,
-        1,
-        "null",
-        "4.740596106774402",
-        "-74.03132287148797", 
-        "calle 141bis #16a - 39",
-        "carro"
+            1,
+            1,
+            "null",
+            "4.740596106774402",
+            "-74.03132287148797",
+            "calle 141bis #16a - 39",
+            "carro"
     )
 
     fun modificarParking(id: Int, id_owner: Int, id_client: String, latitude: String, longitude: String, location: String, type: String) {

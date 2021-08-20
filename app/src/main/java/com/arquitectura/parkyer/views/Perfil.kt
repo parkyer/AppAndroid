@@ -11,7 +11,6 @@ import android.widget.TextView
 import android.widget.Toast
 import com.arquitectura.parkyer.MainActivity
 import com.arquitectura.parkyer.R
-import com.arquitectura.parkyer.models.Parking
 import com.arquitectura.parkyer.models.User
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -64,6 +63,7 @@ class Perfil : AppCompatActivity() {
         }
         parking.setOnClickListener {
             val intent = Intent(this, Parking::class.java)
+            enviarInformacion(intent)
             startActivity(intent)
         }
     }

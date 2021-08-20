@@ -1,7 +1,10 @@
 package com.arquitectura.parkyer.views
 
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ListView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.arquitectura.parkyer.R
 import com.arquitectura.parkyer.microservicios.MicroServicioAdmin2
@@ -12,21 +15,29 @@ class Parking : AppCompatActivity() {
 
     val user = User()
     var logIn = false
-    val parking = Parking()
-    val functions = MicroServicioAdmin2()
+    //val parking = Parking()
+    //val functions = MicroServicioAdmin2()
 
-    val en_uso by lazy { findViewById(R.id.en_uso) as ListView }
-    val disponibles by lazy { findViewById(R.id.disponibles) as ListView }
+    val usedby by lazy { findViewById(R.id.usedby) as ListView }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_parking)
         cargarInformacion()
-        en_uso.setOnClickListener {
-            functions.getParkingsUsedBy(user.id!!)
-        }
-        disponibles.setOnClickListener {
-            functions.getAvailableParkings()
+        val id_client = user.id
+
+        val arrayAdapter:ArrayAdapter<*>
+        val persona_1 = "Carlos"
+        val persona_2 = "Santiago"
+        val personas = mutableListOf(persona_1, persona_2, id_client)
+
+        arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1,personas)
+        usedby.adapter = arrayAdapter
+
+        usedby.setOnItemClickListener(){parent,view,position,id->
+
+            Toast.makeText(this,parent.getItemAtPosition(position).toString(),Toast.LENGTH_LONG)
+
         }
     }
 
@@ -42,4 +53,3 @@ class Parking : AppCompatActivity() {
         logIn = intent.getBooleanExtra("logIn", false)
     }
 }
-

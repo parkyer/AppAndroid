@@ -5,6 +5,7 @@ import com.a.graphqlwithretrofit.ServiceBuilder
 import com.arquitectura.parkyer.models.Parking
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import io.reactivex.Single
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.json.JSONObject
@@ -24,8 +25,8 @@ class FunctionsAdmin2 {
 
         val paramObject = JSONObject()
         paramObject.put(
-            "query",
-            "query {getParkings{id,id_owner,id_client,latitude,longitude,location,type}}"
+                "query",
+                "query {getParkings{id,id_owner,id_client,latitude,longitude,location,type}}"
         )
 
         /*GlobalScope.launch {
@@ -43,15 +44,17 @@ class FunctionsAdmin2 {
         }*/
     }
 
-    fun getParkingsUsedBy(id_client: Int) {
+    fun getParkingsUsedBy(id_client: Int) : Single<String> {
 
         val paramObject = JSONObject()
         paramObject.put(
-            "query",
-            "query {getParkingsUsedBy(id: ${id_client}){id,id_owner,id_client,latitude,longitude,location,type}}"
+                "query",
+                "query {getParkingsUsedBy(id: ${id_client}){id,id_owner,id_client,latitude,longitude,location,type}}"
         )
 
-        /*GlobalScope.launch {
+        return retrofit.sendRequest(paramObject.toString())
+
+        /* GlobalScope.launch {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
                 val data = JSONObject(response.body().toString())
@@ -70,74 +73,74 @@ class FunctionsAdmin2 {
 
         val paramObject = JSONObject()
         paramObject.put(
-            "query",
-            "query {getAvailableParkings{id,id_owner,id_client,latitude,longitude,location,type}}"
+                "query",
+                "query {getAvailableParkings{id,id_owner,id_client,latitude,longitude,location,type}}"
         )
 
         /*GlobalScope.launch {
-            try {
-                val response = retrofit.sendRequest(paramObject.toString())
-                val data = JSONObject(response.body().toString())
-                Availables = Gson().fromJson(
-                    JSONObject(data.get("data").toString()).get("getAvailableParkings").toString(),
-                    arrayTutorialType
-                )
-                Log.e("response", Availables.toString())
-            } catch (e: java.lang.Exception) {
-                e.printStackTrace()
-            }
-        }*/
+        try {
+            val response = retrofit.sendRequest(paramObject.toString())
+            val data = JSONObject(response.body().toString())
+            Availables = Gson().fromJson(
+                JSONObject(data.get("data").toString()).get("getAvailableParkings").toString(),
+                arrayTutorialType
+            )
+            Log.e("response", Availables.toString())
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        }
+    }*/
     }
 
     fun newSuscription(id: Int, id_client: String) {
 
         val paramObject = JSONObject()
         paramObject.put(
-            "query",
-            "mutation {newSuscription(id:${id},client:{id_client:\"${id_client}\"}){id,id_owner,id_client,latitude,longitude,location,type}}"
+                "query",
+                "mutation {newSuscription(id:${id},client:{id_client:\"${id_client}\"}){id,id_owner,id_client,latitude,longitude,location,type}}"
         )
 
         /*GlobalScope.launch {
-            try {
-                val response = retrofit.sendRequest(paramObject.toString())
-                val data = JSONObject(response.body().toString())
-                suscription = Gson().fromJson(
-                    JSONObject(
-                        data.get("data").toString()
-                    ).getString("newSuscription").toString(), Parking::class.java
-                )
-                suscription?.let {
-                    Log.e("response", it.id.toString())
-                }
-            } catch (e: java.lang.Exception) {
-                e.printStackTrace()
+        try {
+            val response = retrofit.sendRequest(paramObject.toString())
+            val data = JSONObject(response.body().toString())
+            suscription = Gson().fromJson(
+                JSONObject(
+                    data.get("data").toString()
+                ).getString("newSuscription").toString(), Parking::class.java
+            )
+            suscription?.let {
+                Log.e("response", it.id.toString())
             }
-        }*/
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        }
+    }*/
     }
 
     fun deleteSuscription(id: Int) {
 
         val paramObject = JSONObject()
         paramObject.put(
-            "query",
-            "mutation {deleteSuscription(id:${id}){id,id_owner,id_client,latitude,longitude,location,type}}"
+                "query",
+                "mutation {deleteSuscription(id:${id}){id,id_owner,id_client,latitude,longitude,location,type}}"
         )
 
         /*GlobalScope.launch {
-            try {
-                val response = retrofit.sendRequest(paramObject.toString())
-                val data = JSONObject(response.body().toString())
-                unsuscription = Gson().fromJson(
-                    JSONObject(
-                        data.get("data").toString()
-                    ).getString("deleteSuscription").toString(), Parking::class.java
-                )
-                unsuscription?.let {
-                    Log.e("response", it.id.toString())
-                }
-            } catch (e: java.lang.Exception) {
-                e.printStackTrace()
+        try {
+            val response = retrofit.sendRequest(paramObject.toString())
+            val data = JSONObject(response.body().toString())
+            unsuscription = Gson().fromJson(
+                JSONObject(
+                    data.get("data").toString()
+                ).getString("deleteSuscription").toString(), Parking::class.java
+            )
+            unsuscription?.let {
+                Log.e("response", it.id.toString())
             }
-        }*/
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        }
+    }*/
     }
 }

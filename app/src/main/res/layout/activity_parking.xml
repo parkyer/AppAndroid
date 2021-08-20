@@ -22,47 +22,22 @@
             android:id="@+id/label_en_uso"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="190dp"
+            android:layout_marginStart="144dp"
             android:layout_marginBottom="20dp"
             android:text="EN USO:"
             android:textColor="@color/white"
             android:textSize="25dp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/en_uso"
+            app:layout_constraintBottom_toTopOf="@id/usedby"
             app:layout_constraintStart_toStartOf="parent" />
 
         <ListView
-            android:id="@+id/en_uso"
+            android:id="@+id/usedby"
             android:layout_width="300dp"
-            android:layout_height="275dp"
-            android:layout_marginBottom="400dp"
+            android:layout_height="498dp"
+            android:layout_marginBottom="32dp"
             android:background="@drawable/bg_rectangle_white"
-            android:textColor="@color/white"
-            android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/label_disponibles"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="160dp"
-            android:layout_marginBottom="20dp"
-            android:text="DISPONIBLES:"
-            android:textColor="@color/white"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/disponibles"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <ListView
-            android:id="@+id/disponibles"
-            android:layout_width="300dp"
-            android:layout_height="270dp"
-            android:layout_marginBottom="50dp"
-            android:background="@drawable/bg_rectangle_green"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
