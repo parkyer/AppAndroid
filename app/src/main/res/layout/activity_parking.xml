@@ -33,9 +33,9 @@
 
         <ListView
             android:id="@+id/usedby"
-            android:layout_width="400dp"
+            android:layout_width="350dp"
             android:layout_height="300dp"
-            android:layout_marginBottom="284dp"
+            android:layout_marginBottom="404dp"
             android:background="@drawable/bg_rectangle_white"
             android:textColor="@color/black"
             android:textSize="10sp"
@@ -45,11 +45,11 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/subscriptions"
+            android:id="@+id/newsubscription"
             android:layout_width="150dp"
             android:layout_height="70dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginBottom="152dp"
+            android:layout_marginBottom="272dp"
             android:background="@drawable/bg_rectangle_white"
             android:text="NUEVA +"
             android:textColor="@color/black"

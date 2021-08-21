@@ -2,6 +2,7 @@ package com.arquitectura.parkyer.views
 
 import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -27,6 +28,8 @@ class Parking : AppCompatActivity() {
     var logIn = false
     //val parking = Parking()
     val micro = MicroServicioAdmin2()
+
+    val new by lazy { findViewById(R.id.newsubscription) as Button }
 
     private var UsedBy: List<Parking>? = emptyList()
     private val arrayTutorialType = object : TypeToken<List<Parking>>() {}.type
@@ -86,6 +89,11 @@ class Parking : AppCompatActivity() {
                             ).show()
                         })
         )
+        new.setOnClickListener {
+            val intent = Intent(this, AvailableParkings::class.java)
+            enviarInformacion(intent)
+            startActivity(intent)
+        }
     }
 
     fun cargarInformacion() {
@@ -98,6 +106,18 @@ class Parking : AppCompatActivity() {
         user.paymentMethod = intent.getIntExtra("paymentMethod", 0)
         user.address = intent.getStringExtra("address")
         logIn = intent.getBooleanExtra("logIn", false)
+    }
+
+    fun enviarInformacion(intent: Intent) {
+        intent.putExtra("id", user.id)
+        intent.putExtra("name", user.name)
+        intent.putExtra("lastName", user.lastName)
+        intent.putExtra("email", user.email)
+        intent.putExtra("password", user.password)
+        intent.putExtra("phone", user.phone)
+        intent.putExtra("paymentMethod", user.paymentMethod)
+        intent.putExtra("address", user.address)
+        intent.putExtra("logIn", logIn)
     }
 
     private fun DeleteDialog(id: Int?) {

@@ -35,12 +35,12 @@ class MicroServicioAdmin2 {
         return functions_admin2.getParkingsUsedBy(id_client)
     }
 
-    fun getAvailableParkings() {
-        functions_admin2.getAvailableParkings()
+    fun getAvailableParkings(): Single<String> {
+        return functions_admin2.getAvailableParkings()
     }
 
-    fun newSuscription(id: Int, id_client: String) {
-        functions_admin2.newSuscription(id, id_client)
+    fun newSuscription(id: Int?, id_client: String): Single<String> {
+        return functions_admin2.newSuscription(id, id_client)
     }
 
     fun deleteSuscription(id: Int?): Single<String> {

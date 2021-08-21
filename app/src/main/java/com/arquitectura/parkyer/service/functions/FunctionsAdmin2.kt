@@ -66,13 +66,15 @@ class FunctionsAdmin2 {
         }*/
     }
 
-    fun getAvailableParkings() {
+    fun getAvailableParkings(): Single<String> {
 
         val paramObject = JSONObject()
         paramObject.put(
                 "query",
                 "query {getAvailableParkings{id,id_owner,id_client,latitude,longitude,location,type}}"
         )
+
+        return retrofit.sendRequest(paramObject.toString())
 
         /*GlobalScope.launch {
         try {
@@ -89,7 +91,7 @@ class FunctionsAdmin2 {
     }*/
     }
 
-    fun newSuscription(id: Int, id_client: String) {
+    fun newSuscription(id: Int? = 0, id_client: String): Single<String> {
 
         val paramObject = JSONObject()
         paramObject.put(
@@ -97,6 +99,7 @@ class FunctionsAdmin2 {
                 "mutation {newSuscription(id:${id},client:{id_client:\"${id_client}\"}){id,id_owner,id_client,latitude,longitude,location,type}}"
         )
 
+        return retrofit.sendRequest(paramObject.toString())
         /*GlobalScope.launch {
         try {
             val response = retrofit.sendRequest(paramObject.toString())
