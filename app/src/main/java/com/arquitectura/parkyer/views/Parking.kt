@@ -30,6 +30,7 @@ class Parking : AppCompatActivity() {
     val micro = MicroServicioAdmin2()
 
     val new by lazy { findViewById(R.id.newsubscription) as Button }
+    val atras by lazy { findViewById(R.id.atras) as Button }
 
     private var UsedBy: List<Parking>? = emptyList()
     private val arrayTutorialType = object : TypeToken<List<Parking>>() {}.type
@@ -93,6 +94,9 @@ class Parking : AppCompatActivity() {
             val intent = Intent(this, AvailableParkings::class.java)
             enviarInformacion(intent)
             startActivity(intent)
+        }
+        atras.setOnClickListener {
+            onBackPressed()
         }
     }
 

@@ -211,43 +211,39 @@
         android:id="@+id/volver"
         android:layout_width="100dp"
         android:layout_height="35dp"
-        android:layout_marginBottom="15dp"
         android:layout_marginStart="15dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/bg_rectangle_red"
         android:text="Volver"
         android:textColor="@color/white"
         android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/subscriptions"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
+        android:layout_width="130dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="10dp"
         android:layout_marginBottom="15dp"
-        android:layout_marginLeft="20dp"
-        android:background="@drawable/bg_rectangle_white"
-        android:text="Mis Suscripciones"
-        android:textColor="@color/black"
-        android:textSize="12sp"
+        android:background="@drawable/bg_rectangle_green"
+        android:text="Suscripciones"
+        android:textColor="@color/white"
+        android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.226"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/volver" />
 
     <Button
         android:id="@+id/parkings"
         android:layout_width="120dp"
-        android:layout_height="50dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="10dp"
         android:layout_marginBottom="15dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/bg_rectangle_white"
-        android:text="Mis Parqueaderos"
-        android:textColor="@color/black"
-        android:textSize="12sp"
+        android:background="@drawable/bg_rectangle_green"
+        android:text="Parqueaderos"
+        android:textColor="@color/white"
+        android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.831"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@id/subscriptions" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,7 +18,6 @@ import com.arquitectura.parkyer.models.User
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONObject
 
 class Perfil : AppCompatActivity() {
@@ -80,7 +79,6 @@ class Perfil : AppCompatActivity() {
             val intent = Intent(this, Parking::class.java)
             enviarInformacion(intent)
             startActivity(intent)
-            finish()
         }
         volver.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)

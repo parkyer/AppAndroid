@@ -31,6 +31,8 @@ class AvailableParkings : AppCompatActivity() {
     private val arrayTutorialType = object : TypeToken<List<Parking>>() {}.type
     private var suscription: Parking? = Parking()
 
+    val atras by lazy { findViewById(R.id.atras) as Button }
+
     val available by lazy { findViewById(R.id.available) as ListView }
 
     private val compositeDisposable = CompositeDisposable()
@@ -85,6 +87,10 @@ class AvailableParkings : AppCompatActivity() {
                     ).show()
                 })
         )
+
+        atras.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     fun cargarInformacion() {
