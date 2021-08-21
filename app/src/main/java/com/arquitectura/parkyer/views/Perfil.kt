@@ -25,7 +25,7 @@ class Perfil : AppCompatActivity() {
     val cambiarConstrasenia by lazy { findViewById(R.id.cambiar_contrasenia) as Button }
     val campiarMetodo by lazy { findViewById(R.id.cambiar_metodo) as Button }
     val eliminar by lazy { findViewById(R.id.eliminar_cuenta) as Button }
-    val parking by lazy { findViewById(R.id.parking) as Button }
+    val subscriptions by lazy { findViewById(R.id.subscriptions) as Button }
 
     //Textos
     val nombre by lazy { findViewById(R.id.nombre) as TextView }
@@ -61,7 +61,7 @@ class Perfil : AppCompatActivity() {
         eliminar.setOnClickListener {
             showDialog()
         }
-        parking.setOnClickListener {
+        subscriptions.setOnClickListener {
             val intent = Intent(this, Parking::class.java)
             enviarInformacion(intent)
             startActivity(intent)
@@ -110,4 +110,5 @@ class Perfil : AppCompatActivity() {
         intent.putExtra("address", user.address)
         intent.putExtra("logIn", logIn)
     }
+
 }

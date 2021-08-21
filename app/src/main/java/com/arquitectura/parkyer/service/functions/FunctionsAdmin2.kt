@@ -44,7 +44,7 @@ class FunctionsAdmin2 {
         }*/
     }
 
-    fun getParkingsUsedBy(id_client: Int) : Single<String> {
+    fun getParkingsUsedBy(id_client: Int? = 0) : Single<String> {
 
         val paramObject = JSONObject()
         paramObject.put(
@@ -58,10 +58,7 @@ class FunctionsAdmin2 {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
                 val data = JSONObject(response.body().toString())
-                UsedBy = Gson().fromJson(
-                    JSONObject(data.get("data").toString()).get("getParkingsUsedBy").toString(),
-                    arrayTutorialType
-                )
+                U
                 Log.e("response", UsedBy.toString())
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
@@ -118,13 +115,15 @@ class FunctionsAdmin2 {
     }*/
     }
 
-    fun deleteSuscription(id: Int) {
+    fun deleteSuscription(id: Int? = 0): Single<String> {
 
         val paramObject = JSONObject()
         paramObject.put(
                 "query",
                 "mutation {deleteSuscription(id:${id}){id,id_owner,id_client,latitude,longitude,location,type}}"
         )
+
+        return retrofit.sendRequest(paramObject.toString())
 
         /*GlobalScope.launch {
         try {

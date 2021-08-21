@@ -2,6 +2,7 @@ package com.arquitectura.parkyer.microservicios
 
 import com.arquitectura.parkyer.models.Parking
 import com.arquitectura.parkyer.service.functions.FunctionsAdmin2
+import io.reactivex.Single
 
 class MicroServicioAdmin2 {
 
@@ -30,8 +31,8 @@ class MicroServicioAdmin2 {
         functions_admin2.getParkings()
     }
 
-    fun getParkingsUsedBy(id_client: Int) {
-        functions_admin2.getParkingsUsedBy(id_client)
+    fun getParkingsUsedBy(id_client: Int?): Single<String> {
+        return functions_admin2.getParkingsUsedBy(id_client)
     }
 
     fun getAvailableParkings() {
@@ -42,7 +43,7 @@ class MicroServicioAdmin2 {
         functions_admin2.newSuscription(id, id_client)
     }
 
-    fun deleteSuscription(id: Int) {
-        functions_admin2.deleteSuscription(id)
+    fun deleteSuscription(id: Int?): Single<String> {
+        return functions_admin2.deleteSuscription(id)
     }
 }
