@@ -2,18 +2,24 @@ package com.arquitectura.parkyer.views
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Window
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.arquitectura.parkyer.MainActivity
 import com.arquitectura.parkyer.R
-import com.arquitectura.parkyer.models.Parking
+import com.arquitectura.parkyer.microservicios.MicroServicioPerfil
 import com.arquitectura.parkyer.models.User
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_login.*
+import org.json.JSONObject
 
 class Perfil : AppCompatActivity() {
 
@@ -27,6 +33,7 @@ class Perfil : AppCompatActivity() {
     val campiarMetodo by lazy { findViewById(R.id.cambiar_metodo) as Button }
     val eliminar by lazy { findViewById(R.id.eliminar_cuenta) as Button }
     val parking by lazy { findViewById(R.id.parking) as Button }
+    val volver by lazy { findViewById(R.id.volver) as Button }
 
     //Textos
     val nombre by lazy { findViewById(R.id.nombre) as TextView }
@@ -34,6 +41,12 @@ class Perfil : AppCompatActivity() {
     val correo by lazy { findViewById(R.id.correo) as TextView }
     val telefono by lazy { findViewById(R.id.telefono) as TextView }
     val direccion by lazy { findViewById(R.id.direccion) as TextView }
+
+    val micro = MicroServicioPerfil()
+
+    private val compositeDisposable = CompositeDisposable()
+
+    lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,6 +78,12 @@ class Perfil : AppCompatActivity() {
         parking.setOnClickListener {
             val intent = Intent(this, Parking::class.java)
             startActivity(intent)
+            finish()
+        }
+        volver.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 
@@ -72,13 +91,35 @@ class Perfil : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("¿Eliminar Cuenta?")
         builder.setMessage("¿Deseas eliminar tu cuenta de manera permanente?")
-        //builder.setPositiveButton("OK", DialogInterface.OnClickListener(function = x))
 
         builder.setPositiveButton("Eliminar") { dialog, which ->
+            compositeDisposable.add(
+                micro.borrarUsuario(user)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnSubscribe {
+                        progressDialog.setTitle("Eliminando")
+                        progressDialog.setCancelable(false)
+                        progressDialog.show()
+                    }
+                    .subscribe({
+                        progressDialog.cancel()
+                        val data = JSONObject(it)
+                        Log.d("response", data.toString())
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }, {
+                        progressDialog.cancel()
+                    })
+            )
             Toast.makeText(
                 applicationContext,
                 "Eliminado", Toast.LENGTH_SHORT
             ).show()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
         builder.setNegativeButton("Cancelar") { dialog, which ->

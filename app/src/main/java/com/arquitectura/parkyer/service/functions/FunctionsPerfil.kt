@@ -20,7 +20,7 @@ class FunctionsPerfil {
         return retrofit.sendRequest(paramObject.toString())
     }
 
-    fun editarUsuario(user: User) {
+    fun editarUsuario(user: User): Single<String> {
 
         val paramObject = JSONObject()
         paramObject.put(
@@ -28,17 +28,10 @@ class FunctionsPerfil {
             "mutation { updateUser(id: ${user.id}, user: {name: \"${user.name}\", last_name: \"${user.lastName}\", email: \"${user.email}\", phone: ${user.phone}, address: \"${user.address}\"}) {id,name,last_name,email,password,phone,payment_method,address}}"
         )
 
-        /*GlobalScope.launch {
-            try {
-                val response = retrofit.sendRequest(paramObject.toString())
-                Log.e("response", response.body().toString())
-            } catch (e: java.lang.Exception) {
-                e.printStackTrace()
-            }
-        }*/
+        return retrofit.sendRequest(paramObject.toString())
     }
 
-    fun cambiarContrasenia(user: User) {
+    fun cambiarContrasenia(user: User): Single<String> {
 
         val paramObject = JSONObject()
         paramObject.put(
@@ -46,17 +39,10 @@ class FunctionsPerfil {
             "mutation { changePassword(id: ${user.id}, password: {password: \"${user.password}\"}){id,name,last_name,email,password,phone,payment_method,address}}"
         )
 
-        /*GlobalScope.launch {
-            try {
-                val response = retrofit.sendRequest(paramObject.toString())
-                Log.e("response", response.body().toString())
-            } catch (e: java.lang.Exception) {
-                e.printStackTrace()
-            }
-        }*/
+        return retrofit.sendRequest(paramObject.toString())
     }
 
-    fun agregarMetodoDePago(user: User) {
+    fun agregarMetodoDePago(user: User): Single<String> {
 
         val paramObject = JSONObject()
         paramObject.put(
@@ -64,17 +50,10 @@ class FunctionsPerfil {
             "mutation { addPaymentMethod(id: ${user.id}, payment: {payment_method: \"${user.paymentMethod}\"}){id,name,last_name,email,password,phone,payment_method,address}}"
         )
 
-        /*GlobalScope.launch {
-            try {
-                val response = retrofit.sendRequest(paramObject.toString())
-                Log.e("response", response.body().toString())
-            } catch (e: java.lang.Exception) {
-                e.printStackTrace()
-            }
-        }*/
+        return retrofit.sendRequest(paramObject.toString())
     }
 
-    fun borrarUsuario(user: User) {
+    fun borrarUsuario(user: User): Single<String> {
 
         val paramObject = JSONObject()
         paramObject.put(
@@ -82,13 +61,6 @@ class FunctionsPerfil {
             "mutation { deleteUser(id:${user.id}){id,name,last_name,email,password,phone,payment_method,address}}"
         )
 
-        /*GlobalScope.launch {
-            try {
-                val response = retrofit.sendRequest(paramObject.toString())
-                Log.e("response", response.body().toString())
-            } catch (e: java.lang.Exception) {
-                e.printStackTrace()
-            }
-        }*/
+        return retrofit.sendRequest(paramObject.toString())
     }
 }
