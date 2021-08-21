@@ -14,7 +14,6 @@
         android:theme="@style/Theme.Parkyer"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".views.AvailableParkings"></activity>
         <activity android:name=".views.Parking" />
         <activity android:name=".activity_parking" />
         <activity android:name=".views.Login" />

@@ -104,6 +104,7 @@ class Login : AppCompatActivity() {
                             val intent = Intent(this, Perfil::class.java)
                             enviarInformacionLogin(intent)
                             startActivity(intent)
+                            finish()
                         }, {
                             progressDialog.cancel()
                         })
