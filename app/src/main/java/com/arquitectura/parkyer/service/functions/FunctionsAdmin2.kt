@@ -58,7 +58,6 @@ class FunctionsAdmin2 {
             try {
                 val response = retrofit.sendRequest(paramObject.toString())
                 val data = JSONObject(response.body().toString())
-                U
                 Log.e("response", UsedBy.toString())
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()

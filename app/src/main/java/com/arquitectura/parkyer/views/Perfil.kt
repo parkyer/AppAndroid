@@ -32,7 +32,7 @@ class Perfil : AppCompatActivity() {
     val campiarMetodo by lazy { findViewById(R.id.cambiar_metodo) as Button }
     val eliminar by lazy { findViewById(R.id.eliminar_cuenta) as Button }
     val subscriptions by lazy { findViewById(R.id.subscriptions) as Button }
-    val parking by lazy { findViewById(R.id.parkings) as Button }
+    val parkings by lazy { findViewById(R.id.parkings) as Button }
     val volver by lazy { findViewById(R.id.volver) as Button }
 
     //Textos
@@ -77,6 +77,11 @@ class Perfil : AppCompatActivity() {
         }
         subscriptions.setOnClickListener {
             val intent = Intent(this, Parking::class.java)
+            enviarInformacion(intent)
+            startActivity(intent)
+        }
+        parkings.setOnClickListener {
+            val intent = Intent(this, Parking2::class.java)
             enviarInformacion(intent)
             startActivity(intent)
         }
