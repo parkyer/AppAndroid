@@ -23,6 +23,7 @@ class NewParking : AppCompatActivity() {
     var logIn = false
     private var parkings_size: Int? = 0
     val parking = Parking()
+    var parkingOwnerArray = ArrayList<Parking>()
 
     //Textos
     val latitude by lazy { findViewById(R.id.latitude) as EditText }
@@ -53,7 +54,33 @@ class NewParking : AppCompatActivity() {
 
     fun CreateParking() {
         cargarInformacion()
-        parking.id = parkings_size
+        Log.d("response", parkingOwnerArray.toString())
+        var i = 0
+        var idSalida = 0
+        var definitiva = 0
+        parkingOwnerArray.forEach {
+            Log.d("response", "Parking: " +i + " " + idSalida + "______" + it.id)
+            if (it.id == i) {
+                i++
+            } else {
+                var bandera = false
+                idSalida = i
+                parkingOwnerArray.forEach {
+                    if(idSalida==it.id){
+                        bandera = true
+                    }
+                }
+                if(bandera == false){
+                    definitiva = idSalida
+                }else{
+                    i++
+                }
+            }
+        }
+        if(definitiva == 0){
+            definitiva = parkingOwnerArray.size + 1
+        }
+        parking.id = definitiva
         parking.id_owner = user.id
         parking.id_client = null
         parking.latitude = latitude.text.toString()
@@ -61,22 +88,38 @@ class NewParking : AppCompatActivity() {
         parking.location = location.text.toString()
         parking.type = type.text.toString()
         compositeDisposable.add(
-                micro.createParking(parking)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .doOnSubscribe {
-                            progressDialog.setTitle("Creando Parqueadero")
-                            progressDialog.setCancelable(false)
-                            progressDialog.show()
-                        }
-                        .subscribe({
-                            progressDialog.cancel()
-                            val data = JSONObject(it)
-                            Log.d("response", data.toString())
-                        }, {
-                            progressDialog.cancel()
-                        })
+            micro.createParking(parking)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe {
+                    progressDialog.setTitle("Creando Parqueadero")
+                    progressDialog.setCancelable(false)
+                    progressDialog.show()
+                }
+                .subscribe({
+                    progressDialog.cancel()
+                    val data = JSONObject(it)
+                    Log.d("response", data.toString())
+                    val intent = Intent(this, Perfil::class.java)
+                    enviarInformacion(intent)
+                    startActivity(intent)
+                    finish()
+                }, {
+                    progressDialog.cancel()
+                })
         )
+    }
+
+    fun enviarInformacion(intent: Intent) {
+        intent.putExtra("id", user.id)
+        intent.putExtra("name", user.name)
+        intent.putExtra("lastName", user.lastName)
+        intent.putExtra("email", user.email)
+        intent.putExtra("password", user.password)
+        intent.putExtra("phone", user.phone)
+        intent.putExtra("paymentMethod", user.paymentMethod)
+        intent.putExtra("address", user.address)
+        intent.putExtra("logIn", logIn)
     }
 
     fun cargarInformacion() {
@@ -89,7 +132,6 @@ class NewParking : AppCompatActivity() {
         user.paymentMethod = intent.getIntExtra("paymentMethod", 0)
         user.address = intent.getStringExtra("address")
         logIn = intent.getBooleanExtra("logIn", false)
-        parkings_size = intent.getIntExtra("parkings_size", 0)
-
+        parkingOwnerArray = intent.getSerializableExtra("list_parkings") as ArrayList<Parking>
     }
 }

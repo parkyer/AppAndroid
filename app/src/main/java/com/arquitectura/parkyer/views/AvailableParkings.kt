@@ -2,6 +2,7 @@ package com.arquitectura.parkyer.views
 
 import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -134,6 +135,10 @@ class AvailableParkings : AppCompatActivity() {
                             applicationContext,
                             "Creada", Toast.LENGTH_SHORT
                         ).show()
+                        val intent = Intent(this, Perfil::class.java)
+                        enviarInformacion(intent)
+                        startActivity(intent)
+                        finish()
                     }, {
                         progressDialog.cancel()
                         Toast.makeText(
@@ -148,6 +153,18 @@ class AvailableParkings : AppCompatActivity() {
 
         }
         builder.show()
+    }
+
+    fun enviarInformacion(intent: Intent) {
+        intent.putExtra("id", user.id)
+        intent.putExtra("name", user.name)
+        intent.putExtra("lastName", user.lastName)
+        intent.putExtra("email", user.email)
+        intent.putExtra("password", user.password)
+        intent.putExtra("phone", user.phone)
+        intent.putExtra("paymentMethod", user.paymentMethod)
+        intent.putExtra("address", user.address)
+        intent.putExtra("logIn", logIn)
     }
 }
 

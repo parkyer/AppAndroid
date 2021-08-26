@@ -6,6 +6,8 @@ import io.reactivex.Single
 
 class MicroServicioAdmin1 {
 
+    var parkingOwnerArray = ArrayList<Parking>()
+
     private val functions_admin1 = FunctionsAdmin1()
     private var parking = Parking(
         1,

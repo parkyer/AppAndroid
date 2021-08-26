@@ -153,6 +153,10 @@ class Parking : AppCompatActivity() {
                                         applicationContext,
                                         "Eliminado", Toast.LENGTH_SHORT
                                 ).show()
+                                val intent = Intent(this, Perfil::class.java)
+                                enviarInformacion(intent)
+                                startActivity(intent)
+                                finish()
                             }, {
                                 progressDialog.cancel()
                                 Toast.makeText(

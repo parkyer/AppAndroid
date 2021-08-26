@@ -32,8 +32,9 @@ class Parking2 : AppCompatActivity() {
     val parkings by lazy { findViewById(R.id.parkings) as ListView }
 
     private val arrayTutorialType = object : TypeToken<List<Parking>>() {}.type
-    private var Parkings: List<Parking>? = emptyList()
+    private var Parkings= ArrayList<Parking>()
     private var parkings_size: Int? = 0
+    var parkingOwnerArray = ArrayList<Parking>()
 
     private val compositeDisposable = CompositeDisposable()
 
@@ -44,7 +45,6 @@ class Parking2 : AppCompatActivity() {
         setContentView(R.layout.activity_parking2)
         progressDialog = ProgressDialog(this)
         cargarInformacion()
-        val id_owner = user.id
 
         compositeDisposable.add(
             micro.getParkinsCreated()
@@ -67,9 +67,10 @@ class Parking2 : AppCompatActivity() {
 
                     val parkingsarray = ArrayList<String>()
                     parkings_size = Parkings?.size
-
+                    Log.d("response", Parkings.toString())
                     Parkings?.forEach {
-                        if(it.id_owner == id_owner){
+                        if(it.id_owner == user.id){
+                            parkingOwnerArray.add(it)
                             it.location?.let { it1 -> parkingsarray.add(it1) }
                         }
                     }
@@ -78,8 +79,7 @@ class Parking2 : AppCompatActivity() {
                     parkings.adapter = arrayAdapter
 
                     parkings.setOnItemClickListener() { parent, view, position, id ->
-                        //Toast.makeText(this, parent.getItemAtPosition(position).toString(), Toast.LENGTH_LONG).show()
-                        val parking_id = Parkings?.get(position)?.id
+                        val parking_id = parkingOwnerArray.get(position).id
                         DeleteDialog(parking_id)
                         arrayAdapter.notifyDataSetChanged()
                     }
@@ -123,7 +123,7 @@ class Parking2 : AppCompatActivity() {
         intent.putExtra("paymentMethod", user.paymentMethod)
         intent.putExtra("address", user.address)
         intent.putExtra("logIn", logIn)
-        intent.putExtra("parkings_size", parkings_size)
+        intent.putExtra("list_parkings",Parkings)
     }
 
     private fun DeleteDialog(id: Int?) {
@@ -151,6 +151,10 @@ class Parking2 : AppCompatActivity() {
                             applicationContext,
                             "Eliminado", Toast.LENGTH_SHORT
                         ).show()
+                        val intent = Intent(this, Perfil::class.java)
+                        enviarInformacion(intent)
+                        startActivity(intent)
+                        finish()
                     }, {
                         progressDialog.cancel()
                         Toast.makeText(
